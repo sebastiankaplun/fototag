@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest android:versionCode="1"
+    android:versionName="1.0"
+    package="ar.com.moobile.fototag"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-sdk android:minSdkVersion="7"
+        android:targetSdkVersion="7"/>
+    <application android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name">
+        <activity android:name=".activity.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="ar.com.moobile.fototag.activity.SplashActivity"/>
+        <activity android:name="ar.com.moobile.fototag.activity.PictureActivity"/>
+        <activity android:name="ar.com.moobile.fototag.activity.ListedPicturesActivity"/>
+    </application>
+</manifest>
