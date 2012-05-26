@@ -2,7 +2,7 @@
 <resources>
 
 	<!-- Style for the buttons on the home screen. -->
-	<style name="HeaderImage">
+	<style name="upload_data_button">
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_margin">15dp</item>

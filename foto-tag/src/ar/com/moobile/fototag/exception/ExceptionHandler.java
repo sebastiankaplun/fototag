@@ -1,4 +1,4 @@
-package ar.com.moobile.circuit.exception;
+package ar.com.moobile.fototag.exception;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -12,7 +12,7 @@ import com.google.inject.Provider;
  * @author gastonortiz@gmail.com
  */
 public class ExceptionHandler {
-	
+
 	@Inject
 	private Provider<Context> contextProvider;
 
@@ -29,7 +29,7 @@ public class ExceptionHandler {
 			handleRegularException(tag, e);
 		}
 	}
-	
+
 	/**
 	 * Method that handles {@link ValidationException}s.
 	 * 

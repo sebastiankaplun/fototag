@@ -1,9 +1,9 @@
-package ar.com.moobile.circuit.action;
+package ar.com.moobile.fototag.action;
 
 import roboguice.util.RoboAsyncTask;
 import roboguice.util.SafeAsyncTask;
-import ar.com.moobile.circuit.exception.ExceptionHandler;
-import ar.com.moobile.circuit.utils.Injector;
+import ar.com.moobile.fototag.exception.ExceptionHandler;
+import ar.com.moobile.fototag.utils.Injector;
 
 import com.google.inject.Inject;
 

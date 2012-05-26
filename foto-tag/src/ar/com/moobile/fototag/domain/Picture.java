@@ -1,7 +1,5 @@
 package ar.com.moobile.fototag.domain;
 
-import ar.com.moobile.circuit.domain.Entity;
-
 /**
  * Class representing a picture.
  * 

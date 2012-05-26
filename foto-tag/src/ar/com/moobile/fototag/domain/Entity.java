@@ -1,4 +1,4 @@
-package ar.com.moobile.circuit.domain;
+package ar.com.moobile.fototag.domain;
 
 import java.io.Serializable;
 

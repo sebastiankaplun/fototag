@@ -13,6 +13,11 @@ public final class R {
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
+    public static final class id {
+        public static final int bluetooth_device_button=0x7f060001;
+        public static final int sdcard_device_button=0x7f060002;
+        public static final int usb_device_button=0x7f060000;
+    }
     public static final class layout {
         public static final int home=0x7f030000;
         public static final int listed_pictures=0x7f030001;
@@ -20,7 +25,14 @@ public final class R {
         public static final int splash=0x7f030003;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int hello=0x7f040000;
+        public static final int label_app_name=0x7f040000;
+        public static final int label_bluetooth_device=0x7f040002;
+        public static final int label_sdcard_device=0x7f040003;
+        public static final int label_usb_device=0x7f040001;
+    }
+    public static final class style {
+        /**  Style for the buttons on the home screen. 
+         */
+        public static final int upload_data_button=0x7f050000;
     }
 }

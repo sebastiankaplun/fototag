@@ -1,4 +1,4 @@
-package ar.com.moobile.circuit.action;
+package ar.com.moobile.fototag.action;
 
 import roboguice.util.RoboAsyncTask;
 

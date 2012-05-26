@@ -1,24 +1,24 @@
-package ar.com.moobile.circuit.exception;
+package ar.com.moobile.fototag.exception;
 
 /**
  * Default application exception.
  * 
  * @author gastonortiz@gmail.com
  */
-public class AndroidException extends RuntimeException {
+public class FotoTagException extends RuntimeException {
 	private static final long serialVersionUID = -9120372085066432874L;
 
 	/**
 	 * @see RuntimeException#RuntimeException(String)
 	 */
-	public AndroidException(String msg) {
+	public FotoTagException(String msg) {
 		super(msg);
 	}
 
 	/**
 	 * @see RuntimeException#RuntimeException(Throwable)
 	 */
-	public AndroidException(Throwable t) {
+	public FotoTagException(Throwable t) {
 		super(t);
 	}
 }

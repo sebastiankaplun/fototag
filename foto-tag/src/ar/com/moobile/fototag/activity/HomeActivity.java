@@ -1,6 +1,9 @@
 package ar.com.moobile.fototag.activity;
 
+import roboguice.inject.InjectView;
+import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 import ar.com.moobile.fototag.R;
 
 /**
@@ -9,6 +12,15 @@ import ar.com.moobile.fototag.R;
  * @author gastonortiz@gmail.com
  */
 public class HomeActivity extends FotoTagActivity {
+	
+	@InjectView(R.id.usb_device_button)
+	private Button usbDeviceButton;
+
+	@InjectView(R.id.bluetooth_device_button)
+	private Button blueToothDeviceButton;
+
+	@InjectView(R.id.sdcard_device_button)
+	private Button sdcardDeviceButton;
 
 	/**
 	 * Default constructor.
@@ -23,5 +35,6 @@ public class HomeActivity extends FotoTagActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 	}
 }

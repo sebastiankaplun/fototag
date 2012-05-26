@@ -1,7 +1,8 @@
-package ar.com.moobile.circuit.utils;
+package ar.com.moobile.fototag.utils;
 
 import roboguice.inject.InjectorProvider;
 import android.content.Context;
+import ar.com.moobile.fototag.utils.Injector;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;

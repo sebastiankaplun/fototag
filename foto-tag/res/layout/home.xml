@@ -8,15 +8,15 @@
     <!-- Button that will trigger the upload of pictures from a usb device. -->
     <Button android:id="@+id/usb_device_button"
         android:text="@string/label_usb_device"
-        style="upload_data_button" />
+        style="@style/upload_data_button" />
 
     <!-- Button that will trigger the upload of pictures from a bluetooth device. -->
     <Button android:id="@+id/bluetooth_device_button"
         android:text="@string/label_bluetooth_device"
-        style="upload_data_button" />
+        style="@style/upload_data_button" />
 
     <!-- Button that will trigger the upload of pictures from a sdcard device. -->
     <Button android:id="@+id/sdcard_device_button"
         android:text="@string/label_sdcard_device"
-        style="upload_data_button" />
+        style="@style/upload_data_button" />
 </LinearLayout>
