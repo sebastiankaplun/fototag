@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+
+	<!-- Style for the buttons on the home screen. -->
+	<style name="HeaderImage">
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_margin">15dp</item>
+	</style>
+</resources>
