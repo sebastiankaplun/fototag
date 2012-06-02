@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-	<string name="label_app_name">FotoTag</string>
-	<string name="label_usb_device">USB</string>
-	<string name="label_bluetooth_device">Bluetooth</string>
-	<string name="label_sdcard_device">SD card</string>
+    <string name="label_app_name">FotoTag</string>
+    <string name="label_take_picture">Tomar Foto</string>
+    <string name="label_bluetooth_device">Obtener por Bluetooth</string>
+    <string name="label_sdcard_device">Obtener por USB</string>
 </resources>

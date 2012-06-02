@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="96dp">
+
+    <!-- Image depicting a folder. -->
+    <ImageView android:id="@+id/folder_image"
+        android:src="@drawable/folder_icon"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_alignParentLeft="true" />
+
+    <!-- Selection button. -->
+    <Button android:id="@+id/folder_selection_button"
+        android:layout_height="96dp"
+        android:layout_width="96dp"
+        android:text="SELECT"
+        android:layout_alignParentRight="true"/>
+
+    <!-- Name of the folder. -->
+    <TextView android:id="@+id/folder_name"
+        android:layout_width="wrap_content"
+        android:layout_height="96dp" 
+		android:textSize="25dp"
+		android:textColor="@android:color/white"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@id/folder_image"
+        android:layout_toLeftOf="@id/folder_selection_button"/>
+</RelativeLayout>

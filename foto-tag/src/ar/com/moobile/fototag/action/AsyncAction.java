@@ -18,7 +18,7 @@ public abstract class AsyncAction<T> extends RoboAsyncTask<T> implements Action 
 	
 	@Inject
 	private ExceptionHandler exceptionHandler;
-
+	
 	/**
 	 * Default constructor.
 	 */
@@ -27,7 +27,7 @@ public abstract class AsyncAction<T> extends RoboAsyncTask<T> implements Action 
 		// Hack made so that injection is provided for this class.
 		Injector.getInstance().injectMembers(this);
 	}
-
+	
 	/**
 	 * @see SafeAsyncTask#onException(Exception)
 	 */

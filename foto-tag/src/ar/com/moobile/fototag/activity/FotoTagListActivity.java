@@ -1,15 +1,16 @@
 package ar.com.moobile.fototag.activity;
 
 import roboguice.activity.RoboActivity;
-import android.app.Activity;
+import roboguice.activity.RoboListActivity;
+import android.app.ListActivity;
 import android.os.Bundle;
 
 /**
- * Default {@link Activity} defined by the framework to implement it's features.
+ * Default {@link ListActivity} defined by the framework to implement it's features.
  * 
  * @author gastonortiz@gmail.com
  */
-public class FotoTagActivity extends RoboActivity {
+public class FotoTagListActivity extends RoboListActivity {
 
 	private Integer layoutId;
 
@@ -19,7 +20,7 @@ public class FotoTagActivity extends RoboActivity {
 	 * @param layoutId
 	 *            The Resource of the ID of the activity.
 	 */
-	public FotoTagActivity(Integer layoutId) {
+	public FotoTagListActivity(Integer layoutId) {
 		this.layoutId = layoutId;
 	}
 

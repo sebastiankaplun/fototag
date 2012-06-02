@@ -1,6 +1,7 @@
 package ar.com.moobile.fototag;
 
 import roboguice.config.AbstractAndroidModule;
+import ar.com.moobile.fototag.utils.Injector;
 
 import com.google.inject.AbstractModule;
 
@@ -16,6 +17,6 @@ public class FotoTagModule extends AbstractAndroidModule {
 	 */
 	@Override
 	protected void configure() {
-		// Do nothing... yet.
+		requestStaticInjection(Injector.class);
 	}
 }

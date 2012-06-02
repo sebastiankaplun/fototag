@@ -6,8 +6,8 @@
     android:gravity="center">
 
     <!-- Button that will trigger the upload of pictures from a usb device. -->
-    <Button android:id="@+id/usb_device_button"
-        android:text="@string/label_usb_device"
+    <Button android:id="@+id/take_picture_button"
+        android:text="@string/label_take_picture"
         style="@style/upload_data_button" />
 
     <!-- Button that will trigger the upload of pictures from a bluetooth device. -->

@@ -1,2 +1,4 @@
-circuit/bin/**/*
+foto-tag/bin/*
+foto-tag/bin/**/*
+foto-tag/gen/*
 foto-tag/bin/**/*
