@@ -10,7 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import ar.com.moobile.fototag.R;
-import ar.com.moobile.fototag.activity.adapter.PicturesAdapter;
+import ar.com.moobile.fototag.activity.adapter.PictureAdapter;
 import ar.com.moobile.fototag.domain.Folder;
 import ar.com.moobile.fototag.domain.Picture;
 
@@ -45,9 +45,8 @@ public class ListedPicturesActivity extends FotoTagActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		pictures.setAdapter(new PicturesAdapter(this, folder));
+		pictures.setAdapter(new PictureAdapter(this, folder.getPictures()));
 		pictures.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view,
 					int position, long id) {

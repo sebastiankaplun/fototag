@@ -9,15 +9,17 @@ import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import ar.com.moobile.fototag.action.CreateThumbnailAction;
 import ar.com.moobile.fototag.domain.Folder;
 import ar.com.moobile.fototag.domain.Picture;
+import ar.com.moobile.fototag.domain.Thumbnail;
 
 /**
- * Adapter that handles the {@link Picture}s.
+ * Adapter that handles the {@link Thumbnail}s.
  * 
  * @author gastonortiz@gmail.com
  */
-public class PicturesAdapter extends BaseAdapter {
+public class PictureAdapter extends BaseAdapter {
 	private List<Picture> pictures;
 	private Context context;
 
@@ -26,12 +28,12 @@ public class PicturesAdapter extends BaseAdapter {
 	 * 
 	 * @param context
 	 *            The {@link Context} that contains the adapter.
-	 * @param folder
+	 * @param pictures
 	 *            The {@link Folder} containing the pictures to be displayed.
 	 */
-	public PicturesAdapter(Context context, Folder folder) {
+	public PictureAdapter(Context context, List<Picture> pictures) {
 		this.context = context;
-		this.pictures = folder.getPictures();
+		this.pictures = pictures;
 	}
 
 	/**
@@ -76,8 +78,7 @@ public class PicturesAdapter extends BaseAdapter {
 			imageView = (ImageView) convertView;
 		}
 		imageView.setTag(getItem(position));
-		imageView.setImageBitmap(picture.createThumbnail());
+		new CreateThumbnailAction(imageView, picture).execute();
 		return imageView;
 	}
-
 }

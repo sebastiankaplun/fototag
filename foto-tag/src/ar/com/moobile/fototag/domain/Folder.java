@@ -13,9 +13,15 @@ import com.google.inject.internal.Lists;
 public class Folder extends Entity {
 
 	private static final long serialVersionUID = 8888423771631051184L;
-	
+
 	private File folderFile;
 
+	/**
+	 * Default constructor. Sets the file that matches this Folder.
+	 * 
+	 * @param uri
+	 *            The URI of the file.
+	 */
 	public Folder(String uri) {
 		super(uri);
 		this.folderFile = new File(uri);
@@ -44,11 +50,23 @@ public class Folder extends Entity {
 	public List<Picture> getPictures() {
 		List<Picture> pictures = Lists.newArrayList();
 		for (File file : folderFile.listFiles()) {
-			if (file.getName().contains(".png")) {
+			if ((!file.isDirectory())
+					&& ((file.getName().toLowerCase().contains(".png"))
+							|| (file.getName().toLowerCase().contains(".jpg")) || (file
+							.getName().toLowerCase().contains(".bmp")))) {
 				pictures.add(new Picture(file.getAbsolutePath()));
 			}
 		}
 		return pictures;
+	}
+
+	/**
+	 * Counts the amount of pictures on this folder.
+	 * 
+	 * @return {@link Integer} The amount of pictures.
+	 */
+	public Integer countPictures() {
+		return getPictures().size();
 	}
 
 	/**

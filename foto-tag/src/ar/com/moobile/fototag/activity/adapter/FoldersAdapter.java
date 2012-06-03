@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import ar.com.moobile.fototag.R;
 import ar.com.moobile.fototag.action.DisplayPicturesAction;
+import ar.com.moobile.fototag.action.ShowFolderAction;
 import ar.com.moobile.fototag.activity.ExecuteOnClickListener;
 import ar.com.moobile.fototag.domain.Folder;
 
@@ -42,7 +43,8 @@ public class FoldersAdapter extends ArrayAdapter<Folder> {
 				folder.getName());
 		v.findViewById(R.id.folder_selection_button).setOnClickListener(
 				new ExecuteOnClickListener(new DisplayPicturesAction(folder)));
-
+		v.findViewById(R.id.folder_data_layout).setOnClickListener(
+				new ExecuteOnClickListener(new ShowFolderAction(folder)));
 		return v;
 	}
 

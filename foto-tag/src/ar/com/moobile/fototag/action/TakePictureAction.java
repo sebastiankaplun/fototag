@@ -7,7 +7,6 @@ import java.util.concurrent.Callable;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import ar.com.moobile.fototag.domain.Picture;
 
