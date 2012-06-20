@@ -21,7 +21,7 @@ public enum Resolution {
 					&& (UPPER_RANGE >= pixelsAmount);
 		}
 	},
-	LOW(R.drawable.hi) {
+	LOW(R.drawable.low) {
 		@Override
 		protected Boolean isInRange(long pixelsAmount) {
 			return LOWER_RANGE > pixelsAmount;
