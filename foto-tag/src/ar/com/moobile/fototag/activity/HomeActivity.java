@@ -3,12 +3,15 @@ package ar.com.moobile.fototag.activity;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import ar.com.moobile.fototag.R;
+import ar.com.moobile.fototag.action.ActivateBlueToothAction;
 import ar.com.moobile.fototag.action.CleanFilesAction;
 import ar.com.moobile.fototag.action.DisplayPicturesAction;
 import ar.com.moobile.fototag.action.ShowFolderAction;
@@ -32,6 +35,8 @@ public class HomeActivity extends FotoTagActivity {
 	@InjectView(R.id.sdcard_device_button)
 	private Button sdcardDeviceButton;
 
+	BroadcastReceiver fileReceivedBroadcastReceiver;
+
 	/**
 	 * Default constructor.
 	 */
@@ -47,17 +52,15 @@ public class HomeActivity extends FotoTagActivity {
 		super.onCreate(savedInstanceState);
 		takePictureButton.setOnClickListener(new ExecuteOnClickListener(
 				new TakePictureAction()));
-		blueToothDeviceButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				new DisplayPicturesAction(Picture.FOLDER_URI).execute();
-			}
-		});
+		blueToothDeviceButton.setOnClickListener(new ExecuteOnClickListener(
+				new ActivateBlueToothAction()));
 		sdcardDeviceButton.setOnClickListener(new ExecuteOnClickListener(
 				new ShowFolderAction("/udisk")));
 	}
-	
+
+	/**
+	 * @see RoboActivity#onResume()
+	 */
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -74,6 +77,27 @@ public class HomeActivity extends FotoTagActivity {
 			if (requestCode == TakePictureAction.TAKE_PICTURE_REQUEST_CODE) {
 				new DisplayPicturesAction(Picture.FOLDER_URI).execute();
 			}
+			if (requestCode == ActivateBlueToothAction.ACTIVATE_BLUETOOTH_REQUEST_CODE) {
+				BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+				if (adapter.getScanMode() != BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+					Intent discoverableIntent = new Intent(
+							BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+					discoverableIntent.putExtra(
+							BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 60);
+					startActivity(discoverableIntent);
+				}
+				fileReceivedBroadcastReceiver = new FileReceivedBroadcastReceiver();
+				registerReceiver(fileReceivedBroadcastReceiver,
+						new IntentFilter(
+								BluetoothDevice.ACTION_ACL_DISCONNECTED));
+			}
 		}
 	}
+
+	/**
+	 * @see RoboActivity#onDestroy()
+	 */
+	protected void onDestroy() {
+		unregisterReceiver(fileReceivedBroadcastReceiver);
+	};
 }

@@ -1,7 +1,9 @@
 package ar.com.moobile.fototag.action;
 
 import java.util.Map;
+import java.util.concurrent.Callable;
 
+import roboguice.util.SafeAsyncTask;
 import android.view.View;
 import android.widget.ImageView;
 import ar.com.moobile.fototag.R;
@@ -18,7 +20,7 @@ import com.google.inject.internal.Maps;
  */
 public class CreateThumbnailAction extends AsyncAction<Thumbnail> {
 	private Picture picture;
-	private ImageView imageView;
+	private View view;
 	private static Map<View, Action> displayedViews = Maps.newHashMap();
 
 	/**
@@ -26,15 +28,15 @@ public class CreateThumbnailAction extends AsyncAction<Thumbnail> {
 	 * Sets the imageView to contain the thumbnail image as well as the picture
 	 * that will have the thumbnail created.
 	 * 
-	 * @param imageView
+	 * @param view
 	 *            The {@link ImageView} that will display the thumbnail.
 	 * @param picture
 	 *            The picture that will own the thumbnail.
 	 */
-	public CreateThumbnailAction(ImageView imageView, Picture picture) {
-		this.imageView = imageView;
+	public CreateThumbnailAction(View view, Picture picture) {
+		this.view = view;
 		this.picture = picture;
-		displayedViews.put(imageView, this);
+		displayedViews.put(view, this);
 	}
 
 	/**
@@ -43,7 +45,9 @@ public class CreateThumbnailAction extends AsyncAction<Thumbnail> {
 	@Override
 	protected void onPreExecute() throws Exception {
 		super.onPreExecute();
-		imageView.setImageResource(R.drawable.spinner);
+		ImageView thumbnailView = ImageView.class.cast(view
+				.findViewById(R.id.thumbnail));
+		thumbnailView.setImageResource(R.drawable.spinner);
 	}
 
 	/**
@@ -63,7 +67,7 @@ public class CreateThumbnailAction extends AsyncAction<Thumbnail> {
 
 			// If after the half second the image is still on the screen, then
 			// create the thumbnail for it.
-			if (displayedViews.get(imageView).equals(this)) {
+			if (displayedViews.get(view).equals(this)) {
 				return picture.getThumbnail();
 			} else {
 
@@ -87,7 +91,9 @@ public class CreateThumbnailAction extends AsyncAction<Thumbnail> {
 		// is not on the screen, so the default empty image should be left on
 		// the image view.
 		if (thumbnail != null) {
-			imageView.setImageURI(thumbnail.getUri());
+			ImageView thumbnailView = ImageView.class.cast(view
+					.findViewById(R.id.thumbnail));
+			thumbnailView.setImageURI(thumbnail.getUri());
 		}
 	}
 }

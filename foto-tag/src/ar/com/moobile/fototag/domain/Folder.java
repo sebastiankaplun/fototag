@@ -3,6 +3,9 @@ package ar.com.moobile.fototag.domain;
 import java.io.File;
 import java.util.List;
 
+import android.os.Environment;
+import ar.com.moobile.fototag.utils.Files;
+
 import com.google.inject.internal.Lists;
 
 /**
@@ -15,6 +18,8 @@ public class Folder extends Entity {
 	private static final long serialVersionUID = 8888423771631051184L;
 
 	private File folderFile;
+	
+	public static final String BLUETOOTH_PATH = Environment.getExternalStorageDirectory() + "/bluetooth";
 
 	/**
 	 * Default constructor. Sets the file that matches this Folder.
@@ -24,7 +29,7 @@ public class Folder extends Entity {
 	 */
 	public Folder(String uri) {
 		super(uri);
-		this.folderFile = new File(uri);
+		this.folderFile = Files.newDirectory(uri);
 	}
 
 	/**

@@ -1,19 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:layout_height="fill_parent">
+    
+    <!-- Actions Bar. -->
+    <LinearLayout android:id="@+id/actions_bar"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray">
+        <ImageView android:id="@+id/printer_button"
+            android:src="@drawable/printer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+    </LinearLayout>
 
-    <!-- Grid displaying the images. -->
-    <GridView android:id="@+id/pictures_grid"
-        android:layout_weight="1"
-        android:layout_width="0px"
-        android:numColumns="2"
-        android:layout_height="match_parent" />
+    <!-- Screen container. -->
+    <LinearLayout android:layout_above="@id/actions_bar"
+        android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
 
-    <!-- Selected image. -->
-    <ImageView android:id="@+id/selected_picture"
-        android:layout_weight="2"
-        android:layout_width="0px"
-        android:layout_height="match_parent" />
-</LinearLayout>
+	    <!-- Grid displaying the images. -->
+	    <GridView android:id="@+id/pictures_grid"
+	        android:layout_weight="1"
+	        android:layout_width="0px"
+	        android:numColumns="2"
+	        android:layout_height="fill_parent" />
+
+	    <!-- Selected image container. -->
+	    <RelativeLayout android:layout_weight="2"
+	        android:layout_width="0px"
+	        android:layout_height="fill_parent">
+        
+	        <!-- Background image. -->
+		    <ImageView android:id="@+id/selected_picture"
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentTop="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_alignParentBottom="true" />
+
+		    <SeekBar android:id="@+id/picture_highlighter"
+		        android:layout_height="wrap_content"
+		        android:layout_width="fill_parent"
+		        android:layout_margin="5dp"
+		        android:layout_alignBottom="@id/selected_picture"
+		        android:max="100"
+		        android:progress="50" />
+	    </RelativeLayout>
+	</LinearLayout>
+</RelativeLayout>

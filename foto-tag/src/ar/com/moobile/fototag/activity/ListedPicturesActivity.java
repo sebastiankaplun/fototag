@@ -1,25 +1,35 @@
 package ar.com.moobile.fototag.activity;
 
+import java.util.List;
+
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import ar.com.moobile.fototag.R;
+import ar.com.moobile.fototag.action.CreatePreviewAction;
+import ar.com.moobile.fototag.action.CreatePreviewAction.CreatePreviewListener;
+import ar.com.moobile.fototag.action.PrintAction;
 import ar.com.moobile.fototag.activity.adapter.PictureAdapter;
 import ar.com.moobile.fototag.domain.Folder;
 import ar.com.moobile.fototag.domain.Picture;
+
+import com.google.inject.internal.Lists;
 
 /**
  * Activity that displays the pictures in a grid.
  * 
  * @author gastonortiz@gmail.com
  */
-public class ListedPicturesActivity extends FotoTagActivity {
+public class ListedPicturesActivity extends FotoTagActivity implements
+		OnSeekBarChangeListener, OnClickListener, CreatePreviewListener {
 
 	public static final String FOLDER_EXTRA = "ar.com.moobile.fototag.activity.ListedPicturesActivity.FOLDER_EXTRA";
 
@@ -30,7 +40,15 @@ public class ListedPicturesActivity extends FotoTagActivity {
 	private GridView pictures;
 
 	@InjectView(R.id.selected_picture)
-	private ImageView selectedPicture;
+	private ImageView selectedPictureView;
+
+	@InjectView(R.id.picture_highlighter)
+	private SeekBar pictureHighlighter;
+	
+	@InjectView(R.id.printer_button)
+	private ImageView printerButton;
+
+	private Picture selectedPicture;
 
 	/**
 	 * Default constructor.
@@ -45,14 +63,72 @@ public class ListedPicturesActivity extends FotoTagActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		pictures.setAdapter(new PictureAdapter(this, folder.getPictures()));
-		pictures.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> adapterView, View view,
-					int position, long id) {
-				Picture picture = Picture.class.cast(view.getTag());
-				selectedPicture.setImageBitmap(picture.createPreview());
+		pictureHighlighter.setMax(Picture.MAX_BRIGHTNESS);
+		pictureHighlighter.setProgress(Picture.AVERAGE_BRIGHTNESS);
+		pictures.setAdapter(new PictureAdapter(this, folder.getPictures(), this));
+		pictureHighlighter.setOnSeekBarChangeListener(this);
+		printerButton.setOnClickListener(this);
+	}
+
+	/**
+	 * @see OnSeekBarChangeListener#onProgressChanged(SeekBar, int, boolean)
+	 */
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		selectedPicture.setBrightnessFactor(progress);
+	}
+
+	/**
+	 * @see OnSeekBarChangeListener#onStartTrackingTouch(SeekBar)
+	 */
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// Do nothing.
+	}
+
+	/**
+	 * @see OnSeekBarChangeListener#onStopTrackingTouch(SeekBar)
+	 */
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		new CreatePreviewAction(selectedPicture, this).execute();
+	}
+
+	/**
+	 * @see OnClickListener#onClick(View)
+	 */
+	@Override
+	public void onClick(View view) {
+		if (printerButton.equals(view)) {
+			for (int i = 0; i < pictures.getCount(); i++) {
+				List<Picture> picturesToPrint = Lists.newArrayList();
+				Picture picture = Picture.class.cast(pictures.getItemAtPosition(i));
+				if (picture.isPrintable()) {
+					picturesToPrint.add(picture);
+				}
+				new PrintAction(picturesToPrint).execute();
 			}
-		});
+		} else {
+			selectedPicture = Picture.class.cast(view.getTag());
+			new CreatePreviewAction(selectedPicture, this).execute();
+		}
+	}
+
+	/**
+	 * @see CreatePreviewAction.CreatePreviewListener#onPreviewCreationStart()
+	 */
+	@Override
+	public void onPreviewCreationStart() {
+		selectedPictureView.setImageResource(R.drawable.spinner);
+	}
+
+	/**
+	 * @see CreatePreviewAction.CreatePreviewListener#onPreviewCreated(Bitmap)
+	 */
+	@Override
+	public void onPreviewCreated(Bitmap preview) {
+		selectedPictureView.setImageBitmap(preview);
+		pictureHighlighter.setProgress(selectedPicture.getBrightnessFactor());
 	}
 }

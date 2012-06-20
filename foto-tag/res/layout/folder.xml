@@ -12,7 +12,7 @@
 
     <!-- Layout containing the folder data. -->
     <RelativeLayout android:id="@+id/folder_data_layout"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="96dp"
         android:layout_toLeftOf="@id/folder_selection_button"
         android:layout_alignParentLeft="true">

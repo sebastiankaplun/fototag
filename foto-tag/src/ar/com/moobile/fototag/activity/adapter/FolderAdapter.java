@@ -18,7 +18,7 @@ import ar.com.moobile.fototag.domain.Folder;
  * 
  * @author gastonortiz@gmail.com
  */
-public class FoldersAdapter extends ArrayAdapter<Folder> {
+public class FolderAdapter extends ArrayAdapter<Folder> {
 
 	/**
 	 * Default constructor. Sets the context and folders used by this adapter.
@@ -28,7 +28,7 @@ public class FoldersAdapter extends ArrayAdapter<Folder> {
 	 * @param folders
 	 *            The {@link Folder}s.
 	 */
-	public FoldersAdapter(Context context, List<Folder> folders) {
+	public FolderAdapter(Context context, List<Folder> folders) {
 		super(context, R.layout.folder, R.id.folder_name, folders);
 	}
 

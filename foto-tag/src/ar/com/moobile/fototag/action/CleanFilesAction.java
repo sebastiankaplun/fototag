@@ -1,6 +1,9 @@
 package ar.com.moobile.fototag.action;
 
 import java.io.File;
+import java.util.concurrent.Callable;
+
+import ar.com.moobile.fototag.utils.Files;
 
 /**
  * Cleans all the files on a determined folder.
@@ -26,7 +29,7 @@ public class CleanFilesAction extends AsyncAction<Void> {
 	 */
 	@Override
 	public Void call() throws Exception {
-		File pictureFolder = new File(uri);
+		File pictureFolder = Files.newDirectory(uri);
 		for (File file : pictureFolder.listFiles()) {
 			if (!file.isDirectory()) {
 				file.delete();

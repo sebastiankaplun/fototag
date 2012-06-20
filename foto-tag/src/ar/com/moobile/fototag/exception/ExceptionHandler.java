@@ -2,6 +2,7 @@ package ar.com.moobile.fototag.exception;
 
 import android.content.Context;
 import android.widget.Toast;
+import ar.com.moobile.fototag.action.HomeAction;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -48,6 +49,6 @@ public class ExceptionHandler {
 	 *            The {@link Exception} to handle.
 	 */
 	private void handleRegularException(String tag, Exception e) {
-		// Do nothing.
+		new HomeAction().execute();
 	}
 }

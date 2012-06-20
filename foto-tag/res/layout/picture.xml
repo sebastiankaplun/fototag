@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/thumbnail_container"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
     android:orientation="vertical" >
-</LinearLayout>
+
+    <!-- The thumbnail of the picture. -->
+    <ImageView android:id="@+id/thumbnail"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop" 
+        android:layout_margin="8dp" />
+
+    <!-- The resolution icon of the picture. -->
+    <ImageView android:id="@+id/resolution_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <!-- The checkbox that marks a thumbnail as ready for print. -->
+    <CheckBox android:id="@+id/print_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>
