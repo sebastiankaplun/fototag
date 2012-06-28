@@ -4,18 +4,29 @@
     android:layout_height="fill_parent">
     
     <!-- Actions Bar. -->
-    <LinearLayout android:id="@+id/actions_bar"
-        android:orientation="horizontal"
-        android:gravity="right"
+    <RelativeLayout android:id="@+id/actions_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@android:color/darker_gray">
+
+        <!-- Print counter. -->
+        <TextView android:id="@+id/print_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+
+        <!-- Print button. -->
         <ImageView android:id="@+id/printer_button"
             android:src="@drawable/printer"
             android:layout_width="50dp"
-            android:layout_height="50dp"/>
-    </LinearLayout>
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
     <!-- Screen container. -->
     <LinearLayout android:layout_above="@id/actions_bar"

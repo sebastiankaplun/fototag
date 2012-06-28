@@ -147,6 +147,16 @@ public class Picture extends Entity {
 	}
 
 	/**
+	 * Gets the picture bitmap.
+	 * 
+	 * @return {@link Bitmap} The picture bitmap.
+	 */
+	public Bitmap getBitmap() {
+		return createBrightenedImage(
+				BitmapFactory.decodeFile(getUri().toString()), brightnessFactor);
+	}
+
+	/**
 	 * Gets the brightness factor of this image.
 	 * 
 	 * @return <b>int</b> The brightness factor.

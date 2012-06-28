@@ -80,14 +80,7 @@ public class PictureAdapter extends BaseAdapter {
 			view.setOnClickListener(listener);
 			CheckBox checkBox = CheckBox.class.cast(view
 					.findViewById(R.id.print_mark));
-			checkBox.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Picture.class.cast(v.getTag()).setPrintable(
-							CheckBox.class.cast(v).isChecked());
-				}
-			});
+			checkBox.setOnClickListener(listener);
 		} else {
 			view = RelativeLayout.class.cast(convertView);
 		}

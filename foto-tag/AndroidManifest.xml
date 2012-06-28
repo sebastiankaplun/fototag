@@ -3,6 +3,7 @@
     package="ar.com.moobile.fototag" xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -20,5 +21,6 @@
         <activity android:name=".activity.ListedPicturesActivity" android:screenOrientation="landscape"/>
         <activity android:theme="@android:style/Theme.Dialog" android:name=".activity.ListedDevicesActivity" android:screenOrientation="landscape"/>
         <activity android:name="ar.com.moobile.fototag.activity.BrowseActivity" android:screenOrientation="landscape"/>
+        <activity android:name="ar.com.moobile.fototag.activity.PrintDialogActivity" android:screenOrientation="landscape"/>
     </application>
 </manifest>

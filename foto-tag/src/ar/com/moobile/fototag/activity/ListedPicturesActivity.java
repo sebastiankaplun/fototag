@@ -9,10 +9,12 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 import ar.com.moobile.fototag.R;
 import ar.com.moobile.fototag.action.CreatePreviewAction;
 import ar.com.moobile.fototag.action.CreatePreviewAction.CreatePreviewListener;
@@ -44,9 +46,14 @@ public class ListedPicturesActivity extends FotoTagActivity implements
 
 	@InjectView(R.id.picture_highlighter)
 	private SeekBar pictureHighlighter;
-	
+
 	@InjectView(R.id.printer_button)
 	private ImageView printerButton;
+
+	@InjectView(R.id.print_counter)
+	private TextView printCounter;
+
+	private int counter;
 
 	private Picture selectedPicture;
 
@@ -68,6 +75,8 @@ public class ListedPicturesActivity extends FotoTagActivity implements
 		pictures.setAdapter(new PictureAdapter(this, folder.getPictures(), this));
 		pictureHighlighter.setOnSeekBarChangeListener(this);
 		printerButton.setOnClickListener(this);
+		printCounter.setText(String.format(
+				getString(R.string.label_print_counter), counter));
 	}
 
 	/**
@@ -103,15 +112,29 @@ public class ListedPicturesActivity extends FotoTagActivity implements
 		if (printerButton.equals(view)) {
 			for (int i = 0; i < pictures.getCount(); i++) {
 				List<Picture> picturesToPrint = Lists.newArrayList();
-				Picture picture = Picture.class.cast(pictures.getItemAtPosition(i));
+				Picture picture = Picture.class.cast(pictures
+						.getItemAtPosition(i));
 				if (picture.isPrintable()) {
 					picturesToPrint.add(picture);
 				}
 				new PrintAction(picturesToPrint).execute();
 			}
 		} else {
-			selectedPicture = Picture.class.cast(view.getTag());
-			new CreatePreviewAction(selectedPicture, this).execute();
+			if (view instanceof CheckBox) {
+				boolean isChecked = CheckBox.class.cast(view).isChecked();
+				Picture.class.cast(view.getTag()).setPrintable(isChecked);
+				if (isChecked) {
+					counter++;
+				} else {
+					counter--;
+				}
+				printCounter.setText(String.format(
+						getString(R.string.label_print_counter), counter));
+
+			} else {
+				selectedPicture = Picture.class.cast(view.getTag());
+				new CreatePreviewAction(selectedPicture, this).execute();
+			}
 		}
 	}
 
